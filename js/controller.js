@@ -32,7 +32,19 @@ angular.module('RouteControllers', [])
             }
         };
     })
+
+    .controller('LogOutController', function($scope, $location, UserAPIService, store) {
+        $scope.status = "You have been looged out!";
+        URL = "https://morning-castle-91468.herokuapp.com/";
+
+        $scope.username = store.remove('username');
+        $scope.authToken = store.remove('authToken');
+    })
+
     .controller('TodoController', function($scope, $location, TodoAPIService, store) {
+        if (!store.get('authToken')) {
+        $location.path("/accounts/login");
+    }
         var URL = "https://morning-castle-91468.herokuapp.com/";
 
         $scope.authToken = store.get('authToken');
