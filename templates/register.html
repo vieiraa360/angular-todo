@@ -1,5 +1,7 @@
 <div>
+    
     <div class="container">
+        <h1>Register</h1>
         <div class="row">
             <div class="col-sm-6">
                 <form name="registrationForm" ng-submit="submitForm()" novalidate>
@@ -13,8 +15,8 @@
                         <input type="password" name="password" class="form-control" ng-model="user.password" required>
                         <p ng-show="registrationForm.password.$pristine" class="help-block">Your password is required</p>
                     </div>
- 
-                    <a href="todo"><button type="submit" class="btn btn-primary" ng-disabled="registrationForm.$invalid">Submit</button></a>
+
+                    <button type="submit" class="btn btn-primary" ng-disabled="registrationForm.$invalid">Submit</button>
                 </form>
             </div>
         </div>
