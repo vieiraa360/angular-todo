@@ -5,9 +5,9 @@ angular.module('TodoDirective',[]).directive('todoTable', function() {
   };
 })
 
-angular.module('NavbarDirective').directive('my-navbar', function () {
+angular.module('NavbarDirective', []).directive('myNavbar', function() {
    return {
      restrict: 'EA',
-     templateUrl: 'templates/directives/navbar.html',
+     templateUrl: 'templates/directives/my-navbar.html',
    };
 });
