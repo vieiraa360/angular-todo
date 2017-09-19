@@ -1,0 +1,20 @@
+	 <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Angular Todo</a>
+			</div>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{active:isActive('/')}"><a href="/">Home</a></li>
+                <li ng-class="{active:isActive('/todo')}"><a href="/todo">Todo</a></li>
+                <li ng-class="{active:isActive('/accounts')}"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accounts <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+                <li ng-class="{active:isActive('/accounts/register')}">
+                	<a href="/accounts/register">Register</a></li>
+                <li ng-class="{active:isActive('/accounts/login')}">
+                	<a href="/accounts/login">Login</a></li>
+                <li ng-class="{active:isActive('/accounts/logout')}">
+                	<a href="/accounts/logout">Logout</a></li>
+                </ul>
+            </ul>
+        </div>
+    </nav>
