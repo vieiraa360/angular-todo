@@ -22,7 +22,5 @@
     "karma-jasmine": "^1.0.2"
   },
   "homepage": "https://github.com/vieiraa360/angular-todo#readme",
-  "dependencies": {
-    "ng-navigation-bar": "0.0.4"
-  }
+  "dependencies": {}
 }
