@@ -25,6 +25,8 @@ angular.module('RouteControllers', [])
 
                 UserAPIService.callAPI(url + "accounts/register/", $scope.registrationUser).then(function(results) {
                     $scope.data = results.data;
+                    store.set('username', $scope.registrationUser.username);
+                    store.set('authToken', $scope.token);
                     if ($scope.data.username == $scope.registrationUser.username 
                         && $scope.data.password == $scope.registrationUser.password) {
                         
@@ -32,22 +34,23 @@ angular.module('RouteControllers', [])
                     }
                 }).catch(function(err) {
                     console.log(err)
+                    alert("This username is already in use. please try using another username!")
                 });
             }
         }
     })
-    .controller('LoginController', function($scope, $location, UserService, store) {
+    .controller('LoginController', function($scope, $location, UserAPIService, store) {
         var url = "https://morning-castle-91468.herokuapp.com/";
 
         $scope.submitForm = function() {
             if ($scope.loginForm.$valid) {
                 $scope.loginUser.username = $scope.user.username;
                 $scope.loginUser.password = $scope.user.password;
-
-                UserAPIService.callAPI(url + "accounts/api-token-auth", $scope.loginUser).then(function(results) {
+                UserAPIService.callAPI(url + 'accounts/api-token-auth', $scope.loginUser).then(function(results) {
                     $scope.token = results.data.token;
                     store.set('username', $scope.loginUser.username);
                     store.set('authToken', $scope.token);
+                    $scope.login();
                     $location.path("/todo");
                 }).catch(function(err) {
                     console.log(err);
@@ -55,9 +58,10 @@ angular.module('RouteControllers', [])
             }
         };
     })
-    .controller('LogoutController', function(store) {
+    .controller('LogoutController', function($scope, store) {
         store.remove('username');
         store.remove('authToken');
+        $scope.status = "You have been logged out!";
     })
     .controller('TodoController', function($scope, $location, TodoAPIService, store) {
         var url = "https://morning-castle-91468.herokuapp.com/";

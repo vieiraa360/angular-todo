@@ -15,11 +15,14 @@
   "bugs": {
     "url": "https://github.com/vieiraa360/angular-todo/issues"
   },
-    "devDependencies": {
+  "devDependencies": {
     "jasmine-core": "^2.4.1",
     "karma": "^1.2.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.0.2"
   },
-  "homepage": "https://github.com/vieiraa360/angular-todo#readme"
+  "homepage": "https://github.com/vieiraa360/angular-todo#readme",
+  "dependencies": {
+    "ng-navigation-bar": "0.0.4"
+  }
 }

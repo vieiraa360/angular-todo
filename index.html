@@ -14,9 +14,12 @@
 			padding-top: 70px;
 		}
 	</style>
+
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+
+<navigation-bar status="status"></navigation-bar>
+	<!--<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/">Angular Todo</a>
@@ -28,13 +31,13 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accounts <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="/accounts/register">Register</a></li>
-						<li><a href="/accounts/login">Login</a></li>
-						<li><a href="/logout">Logout</a></li>
+						<li><a href="/accounts/login">Login <span>{{user}}</span> </a></li>
+						<li><a href="/accounts/logout">Logout</a></li>
 					</ul>
 				</li>
 			</ul>
 		</div>
-	</nav>
+	</nav>-->
 
 	<!-- The templates will be merged into this div: -->
 	<div ng-view>
@@ -44,5 +47,8 @@
 	<script src='js/controller.js'></script>
 	<script src='js/service.js'></script>
 	<script src='js/directive.js'></script>
+	<script src="js/navbarDirective.js"></script>
+	<script src="ng-navigation-bar/dist/navigation-bar.js"></script>
+
 </body>
 </html>
