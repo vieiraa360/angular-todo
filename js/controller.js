@@ -66,7 +66,7 @@ angular.module('RouteControllers', [])
         store.remove('authToken');
         $scope.status = "You have been logged out!";
     })
-    .controller('TodoController', function($scope, $location, TodoAPIService, store) {
+    .controller('TodoController', function($scope, $route, $location, TodoAPIService, store) {
         var url = "https://morning-castle-91468.herokuapp.com/";
 
         $scope.authToken = store.get('authToken');
