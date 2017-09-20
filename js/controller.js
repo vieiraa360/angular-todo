@@ -12,6 +12,7 @@ angular.module('RouteControllers', [])
                 $scope.token = results.data.token;
                 store.set('username', $scope.registrationUser.username);
                 store.set('authToken', $scope.token);
+
                 $location.path("/todo");
             }).catch(function(err) {
                 console.log(err.data);
@@ -51,6 +52,8 @@ angular.module('RouteControllers', [])
                     store.set('username', $scope.loginUser.username);
                     store.set('authToken', $scope.token);
                     $scope.login();
+                    $rootScope.store.set('username');
+                    username.value = "username";
                     $location.path("/todo");
                 }).catch(function(err) {
                     console.log(err);
@@ -133,13 +136,4 @@ angular.module('RouteControllers', [])
                 })
             }
         }
-    })
-    .controller('my-navbarController', function($scope, $location) {
-            $scope.isActive = function(path){
-            var currentPath = $location.path().split('/')[1];
-            if (currentPath.indexOf('?') !== -1) {
-            currentPath = currentPath.split('?')[0];
-            }
-            return currentPath === path.split('/')[1];
-            };
     });
