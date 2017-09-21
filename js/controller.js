@@ -12,7 +12,6 @@ angular.module('RouteControllers', [])
                 $scope.token = results.data.token;
                 store.set('username', $scope.registrationUser.username);
                 store.set('authToken', $scope.token);
-
                 $location.path("/todo");
             }).catch(function(err) {
                 console.log(err.data);
@@ -42,18 +41,23 @@ angular.module('RouteControllers', [])
     })
     .controller('LoginController', function($scope, $location, UserAPIService, store) {
         var url = "https://morning-castle-91468.herokuapp.com/";
-
+        $scope.loginUser = {};
         $scope.submitForm = function() {
             if ($scope.loginForm.$valid) {
                 $scope.loginUser.username = $scope.user.username;
                 $scope.loginUser.password = $scope.user.password;
-                UserAPIService.callAPI(url + 'accounts/api-token-auth', $scope.loginUser).then(function(results) {
+                UserAPIService.callAPI(url + 'accounts/api-token-auth/', $scope.loginUser).then(function(results) {
                     $scope.token = results.data.token;
                     store.set('username', $scope.loginUser.username);
                     store.set('authToken', $scope.token);
-                    $scope.login();
-                    $rootScope.store.set('username');
-                    username.value = "username";
+
+                     if($scope.username != null) {
+                        $scope.loggedin;
+                        return 'username';
+                     };
+
+                    // $scope.login();
+
                     $location.path("/todo");
                 }).catch(function(err) {
                     console.log(err);
@@ -79,6 +83,7 @@ angular.module('RouteControllers', [])
         };
 
         $scope.deleteTodo = function(id) {
+
             TodoAPIService.deleteTodo(url + "todo/" + id, $scope.username, $scope.authToken).then(function(results) {
                 console.log(results);
             }).catch(function(err) {
@@ -89,6 +94,7 @@ angular.module('RouteControllers', [])
         if (!store.get('authToken')) {
             $location.path("/");
         }
+        $scope.todos = [];
 
         TodoAPIService.getTodos(url + "todo/", $scope.username, $scope.authToken).then(function(results) {
             $scope.todos = results.data;
@@ -107,7 +113,9 @@ angular.module('RouteControllers', [])
                 console.log($scope.todo.username)
 
                 TodoAPIService.createTodo(url + "todo/", $scope.todo, $scope.authToken).then(function(results) {
-                    console.log(results)
+                    // how do you add new things to an array? hint: push
+                    $scope.todos.push(results.data);
+                    console.log(results);
                 }).catch(function(err) {
                     console.log(err)
                 })
